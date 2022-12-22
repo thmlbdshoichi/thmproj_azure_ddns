@@ -1,0 +1,11 @@
+azure-dns:
+  client-id: 'YOUR-CLIENT-ID'
+  client-secret: 'YOUR-CLIENT-SECRET'
+  record-name: 'YOUR-RECORD-NAME-HERE'
+  resource-group: 'YOUR-AZURE-RESOURCE-GROUP-NAME'
+  subscription-id: 'YOUR-AZURE-SUBSCRIPTION-ID'
+  tenant-id: 'YOUR-SERVICE-PRINCIPAL-AD-ID'
+  ttl: 3600
+  zonename: 'YOUR-AZURE-DNS-ZONENAME'
+
+# Hostname structure [record-name].[zonename] for exmaple myrecord.myddns.net
