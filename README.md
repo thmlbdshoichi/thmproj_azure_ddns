@@ -19,6 +19,11 @@ Repository นี้สร้างขึ้นเพื่อเป็นข้
 </details>
 
 <details>
-<summary>Create Service Princical (Azure Active Directory)</summary>
+<summary>Create Service Principal (Azure Active Directory)</summary>
+
+</details>
+
+<details>
+<summary>Assign Service Principal as DNS Zone Contributor</summary>
 
 </details>
