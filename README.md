@@ -1,2 +1,3 @@
 # thmproj_azure_ddns
 Interesting ways to create DynDNS using Azure
+เอาโค้ดไปก่อนเดี๋ยวบทความตามมาเด้อ
