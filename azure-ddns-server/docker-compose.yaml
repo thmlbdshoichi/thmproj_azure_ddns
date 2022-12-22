@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  azure-ddns-server:
+    image: azure-ddns-server
+    build:
+      context: ./
+      dockerfile: ./dockerfile
+    container_name: thm-ddns-server
+    restart: "always"
+    ports:
+      - "80:9999"

@@ -1,0 +1,29 @@
+FROM golang:alpine as gobackend
+
+ENV GO111MODULE=on
+ENV GOPROXY=https://goproxy.io,direct
+
+WORKDIR /go/src/thmlbdshoichi/azure_ddns_server
+
+COPY go.mod ./
+COPY go.sum ./
+
+RUN go mod download && go mod verify && go mod tidy
+
+COPY . .
+
+RUN go build -o azure_ddns_server .
+
+FROM alpine:latest
+RUN apk --no-cache add ca-certificates
+RUN apk add --no-cache tzdata
+LABEL MAINTAINER="thmlbdshoichi"
+
+WORKDIR /go/src/thmlbdshoichi
+
+COPY --from=gobackend /go/src/thmlbdshoichi/azure_ddns_server ./
+COPY --from=gobackend /go/src/thmlbdshoichi/azure_ddns_server/config.yaml ./
+
+EXPOSE 9999
+
+ENTRYPOINT ./azure_ddns_server
