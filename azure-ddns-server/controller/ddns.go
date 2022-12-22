@@ -27,12 +27,16 @@ func NewDDNSController() DDNSController {
 func (c *ddnsController) DNSUpdate(ctx *gin.Context) {
 
 	// Authentication Basic Auth
-	base64key := strings.Split(ctx.Request.Header["Authorization"][0], " ")[1]
-	if base64key == "" {
+	if len(ctx.Request.Header["Authorization"]) == 0 {
 		ctx.String(http.StatusUnauthorized, "emptyauth")
 		return
 	}
-	ok, err := c.BasicAuth(base64key)
+	base64key := strings.Split(ctx.Request.Header["Authorization"][0], " ")
+	if len(base64key) < 2 {
+		ctx.String(http.StatusUnauthorized, "emptyauth")
+		return
+	}
+	ok, err := c.BasicAuth(base64key[1])
 	if err != nil {
 		ctx.String(http.StatusInternalServerError, err.Error())
 		return
@@ -45,12 +49,16 @@ func (c *ddnsController) DNSUpdate(ctx *gin.Context) {
 	//----------------------------------------------------------------------------------------------------
 	// RECORD UPDATE INFORMATION
 	hostname := ctx.Query("hostname")
-	record_name := strings.Split(hostname, ".")[0]
-	if record_name == "" {
-		ctx.String(http.StatusBadRequest, "invalid hostname %q with record name %q", hostname, record_name)
+	if hostname == "" {
+		ctx.String(http.StatusBadRequest, "emptyhostname")
 		return
 	}
-
+	record_names := strings.Split(hostname, ".")
+	if len(record_names) < 3 {
+		ctx.String(http.StatusBadRequest, "invalid hostname %q with record name %q", hostname, record_names[0])
+		return
+	}
+	record_name := record_names[0]
 	recordType := armdns.RecordTypeA
 	myip := ctx.Query("myip")
 	var ttl int64 = 3600
