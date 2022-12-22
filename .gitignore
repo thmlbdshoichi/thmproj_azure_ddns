@@ -1,2 +1,4 @@
 azure-ddns-server/config.yaml
 azure-ddns-server/.env
+azure-ddns-client/config.yaml
+azure-ddns-client/.env
