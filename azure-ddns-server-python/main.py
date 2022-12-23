@@ -4,6 +4,7 @@ import uvicorn
 
 from typing import Union
 from fastapi import FastAPI, Header
+from fastapi.responses import PlainTextResponse
 
 with open('config.yaml', 'r') as file:
     config = yaml.safe_load(file)
@@ -21,7 +22,7 @@ dns_client = azdnshelper.AzureDDNS(client_id, client_secret, resource_group, sub
 
 app = FastAPI()
 
-@app.get("/nic/update")
+@app.get("/nic/update", response_class=PlainTextResponse)
 async def DNSUpdater(hostname: str, myip: str, Authorization: list[str] | None = Header(default=None)):
     # Authentication by BasicAuth | BASE64
     # IF DON'T WANT BASIC AUTH JUST COMMENT IT
