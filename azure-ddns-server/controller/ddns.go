@@ -28,12 +28,12 @@ func (c *ddnsController) DNSUpdate(ctx *gin.Context) {
 
 	// Authentication Basic Auth
 	if len(ctx.Request.Header["Authorization"]) == 0 {
-		ctx.String(http.StatusUnauthorized, "emptyauth")
+		ctx.String(http.StatusUnauthorized, "badauth")
 		return
 	}
 	base64key := strings.Split(ctx.Request.Header["Authorization"][0], " ")
 	if len(base64key) < 2 {
-		ctx.String(http.StatusUnauthorized, "emptyauth")
+		ctx.String(http.StatusUnauthorized, "badauth")
 		return
 	}
 	ok, err := c.BasicAuth(base64key[1])
@@ -50,12 +50,12 @@ func (c *ddnsController) DNSUpdate(ctx *gin.Context) {
 	// RECORD UPDATE INFORMATION
 	hostname := ctx.Query("hostname")
 	if hostname == "" {
-		ctx.String(http.StatusBadRequest, "emptyhostname")
+		ctx.String(http.StatusBadRequest, "nohost")
 		return
 	}
 	record_names := strings.Split(hostname, ".")
 	if len(record_names) < 3 {
-		ctx.String(http.StatusBadRequest, "invalid hostname %q with record name %q", hostname, record_names[0])
+		ctx.String(http.StatusBadRequest, "nohost")
 		return
 	}
 	record_name := record_names[0]

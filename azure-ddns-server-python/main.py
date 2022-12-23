@@ -31,7 +31,7 @@ async def DNSUpdater(hostname: str, myip: str, Authorization: list[str] | None =
     base64key = Authorization[0]
     base64key = base64key.split(" ")
     if len(base64key) < 2:
-        return "invalidauth"
+        return "badauth"
     ok = dns_client.BasicAuth(base64key[1])
     if not ok:
         return "badauth"
@@ -39,7 +39,7 @@ async def DNSUpdater(hostname: str, myip: str, Authorization: list[str] | None =
     ttl = 3600
     record_names = hostname.split(".")
     if len(record_names) < 3:
-        return "invalidhostname"
+        return "nohost"
     record_name = record_names[0]
     
     current_ip, ok = dns_client.GetIPFromDNSRecord(record_name)
