@@ -59,6 +59,10 @@ func (c *ddnsController) DNSUpdate(ctx *gin.Context) {
 		return
 	}
 	record_name := record_names[0]
+	if record_name == "" {
+		ctx.String(http.StatusBadRequest, "nohost")
+		return
+	}
 	recordType := armdns.RecordTypeA
 	myip := ctx.Query("myip")
 	var ttl int64 = 3600
@@ -70,7 +74,7 @@ func (c *ddnsController) DNSUpdate(ctx *gin.Context) {
 		//แสดงว่าอาจจะยังไม่มี DNS Record
 		err := c.UpdateRecord(record_name, recordType, myip, ttl, client)
 		if err != nil {
-			ctx.String(http.StatusInternalServerError, err.Error())
+			ctx.String(http.StatusInternalServerError, "911")
 			return
 		}
 	}
@@ -81,7 +85,7 @@ func (c *ddnsController) DNSUpdate(ctx *gin.Context) {
 
 	err = c.UpdateRecord(record_name, recordType, myip, ttl, client)
 	if err != nil {
-		ctx.String(http.StatusInternalServerError, err.Error())
+		ctx.String(http.StatusInternalServerError, "911")
 	}
 	ctx.String(http.StatusOK, "good %s", myip)
 }
