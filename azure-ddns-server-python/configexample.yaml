@@ -1,0 +1,13 @@
+azure-dns:
+  client-id: 'YOUR-CLIENT-ID'
+  client-secret: 'YOUR-CLIENT-SECRET'
+  password: 'YOUR-BASICAUTH-PASSWORD'
+  resource-group: 'YOUR-AZURE-RESOURCE-GROUP-NAME'
+  subscription-id: 'YOUR-AZURE-SUBSCRIPTION-ID'
+  tenant-id: 'YOUR-SERVICE-PRINCIPAL-AD-ID'
+  username: 'YOUR-BASICAUTH-USERNAME'
+  zonename: 'YOUR-AZURE-DNS-ZONENAME'
+
+  fast-api:
+  IP: '0.0.0.0'
+  PORT: 9999

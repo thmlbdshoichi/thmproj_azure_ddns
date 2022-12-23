@@ -138,7 +138,7 @@ func (c *ddnsController) UpdateRecord(recordName string, recordType armdns.Recor
 				}},
 			TTL: to.Ptr[int64](ttl),
 			Metadata: map[string]*string{
-				"updatedBy": to.Ptr("HAT-Server | DNS Updater"),
+				"updatedBy": to.Ptr("DNS Updater Server (GO)"),
 				"updatedAt": to.Ptr(time.Now().String()),
 			},
 		},

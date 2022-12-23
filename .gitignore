@@ -1,4 +1,7 @@
 azure-ddns-server/config.yaml
 azure-ddns-server/.env
+azure-ddns-server-python/config.yaml
+azure-ddns-server-python/.env
+azure-ddns-server-python/__pycache__
 azure-ddns-client/config.yaml
 azure-ddns-client/.env
