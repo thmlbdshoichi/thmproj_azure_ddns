@@ -46,15 +46,20 @@ async def DNSUpdater(hostname: str, myip: str, Authorization: list[str] | None =
     
     current_ip, ok = dns_client.GetIPFromDNSRecord(record_name)
     if not ok:
-        dns_client.UpdateRecord(record_name, myip, ttl)
-        return f"good {myip}"
+        try:
+            dns_client.UpdateRecord(record_name, myip, ttl)
+            return f"good {myip}"
+        except:
+            return f"911"
     
     if myip == current_ip:
         return f"nochg {myip}"
     
-    dns_client.UpdateRecord(record_name, myip, ttl)
+    try:
+        dns_client.UpdateRecord(record_name, myip, ttl)
+        return f"good {myip}"
+    except:
+        return f"911"
     
-    return f"good {myip}"
-
 if __name__ == "__main__":
     uvicorn.run(app, host=config["fast-api"]["IP"], port=config["fast-api"]["PORT"])
