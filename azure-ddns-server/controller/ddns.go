@@ -86,6 +86,7 @@ func (c *ddnsController) DNSUpdate(ctx *gin.Context) {
 	err = c.UpdateRecord(record_name, recordType, myip, ttl, client)
 	if err != nil {
 		ctx.String(http.StatusInternalServerError, "911")
+		return
 	}
 	ctx.String(http.StatusOK, "good %s", myip)
 }
