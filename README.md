@@ -1,4 +1,4 @@
-## <div align="center"> Introduction (English Coming soon)</div>
+### <div align="center"> Introduction (English Coming soon)</div>
 <div align="left">
 Repository นี้สร้างขึ้นเพื่อเป็นข้อมูลเกี่ยวกับการทำ DDNS โดยใช้ Azure DNS Service โดยปกติแล้ว Azure DNS ไม่ได้มีฟังก์ชั่นรองรับการทำ Dynamic DNS แต่ทาง Microsft Azure ได้ออกตัว Azure SDK ที่ทำให้เราสามารถแก้ไข Service ต่างๆของ Azure ได้ เช่น
 <br>
@@ -61,3 +61,5 @@ Repository นี้สร้างขึ้นเพื่อเป็นข้
   2.2. azure-ddns-server-python (pip install ให้เรียบร้อย และ python main.py หรือ uvicorn main:app --reload)<br><br>
 3. ทดสอบการอัพเดท DNS Record ใน ตั้งค่า DDNS Configuration ใน Router เช่น (3BB, AIS) หรือลองใช้โฟล์เดอร์ azure-ddns-client (ต้องใส่ข้อมูลใน config.yaml ก่อน)
 </details>
+
+#### <div align="center"> ขออภัยในความไม่ละเอียดยังไม่มีเวลาเขียน และ ตกแต่งไม่เป็น TT</div>
